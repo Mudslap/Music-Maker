@@ -1,0 +1,702 @@
+<html>
+	<head>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="shortcut icon" href="img/logo.png"/>
+		<title>Music Maker</title>
+		<style>
+			*{
+				margin: 0;
+				font-family: 'Ubuntu', sans-serif;
+			}
+			body{
+				overflow: hidden;
+			}
+			.highlight{
+				border-bottom: 3px solid #2F3C7E;
+			}
+			
+			header{
+				width: 100%;
+				height: 100px;
+				background-color: #FBEAEB;
+				color: #2F3C7E;
+				position: fixed;
+				top: 0;
+				left: 0;
+			}
+			#logo{
+				float: left;
+				position: relative;
+				top: 50%;
+				transform: translate(0, -50%);
+				margin-left: 20px;
+				font-weight: bold;
+				font-size: 30px;
+				transition: 1s;
+			}
+			#logo:hover{
+				opacity: 0.3;
+				cursor: pointer;
+			}
+			ul{
+				float: right;
+				position: relative;
+				top: 50%;
+				transform: translate(0, -50%);
+				font-size: 20px;
+			}
+			li{
+				float: right;
+				margin: 20px;
+				list-style: none;
+				transition: 1s;
+			}
+			li:hover{
+				opacity: 0.3;
+				cursor: pointer;
+			}
+			.heada{
+				color: #2F3C7E;
+				text-decoration: none;
+			}
+			
+			#application{
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100vh;
+				background: linear-gradient(45deg,#E56AB3,#EF87BE,#F9A3CB,#FCBCD7,#FFCEE6);
+			}
+			
+			#selector{
+				position: absolute;
+				left: 0%;
+				top: 20%;
+				width: 30%;
+				height: 80vh;
+				background-color: #FBEAEB;
+				border-top: 3px solid #2F3C7E;
+				border-right: 3px solid #2F3C7E;
+			}
+			#titles{
+				position: absolute;
+				left: 0%;
+				transform: translate(0, -101%);
+			}
+			#titles h1{
+				float: right;
+				font-size: 16px;
+				margin-left: 10px;
+				padding: 10px;
+				margin: 0px;
+				border: 3px solid #2F3C7E;
+				border-top-left-radius: 25px;
+				border-top-right-radius: 25px;
+			}
+			#titles h1:hover{
+				opacity: 0.5;
+				cursor: pointer;
+			}
+			.selected{
+				background-color: #2F3C7E;
+				color: #FBEAEB;
+			}
+			.notselected{
+				color: #2F3C7E;
+				background-color: #FBEAEB;
+			}
+			
+			#instruments{
+				position: absolute;
+				right: 0%;
+				top: 0%;
+				width: 100%;
+				height: 100%;
+				background-color: #FBEAEB;
+			}
+			#types{
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 25%;
+				height: 100%;
+				border-right: 3px solid #2F3C7E;
+				text-align: center;
+			}
+			#types h1{
+				font-weight: 100;
+				font-size: 13px;
+				color: #2F3C7E;
+			}
+			.group{
+				width: 100%;
+				padding-top: 10px;
+				padding-bottom: 10px;
+			}
+			.group:hover{
+				opacity: 0.5;
+				cursor: pointer;
+			}
+			.groupSelected{
+				background-color: lightgray
+			}
+			.group i{
+				margin: 3px;
+			}
+			
+			#objects{
+				position: absolute;
+				width: 75%;
+				left: 25%;
+				height: 100%;
+			}
+			.blockContainer{
+				text-align: center;
+			}
+			.blockContainer h1{
+				font-size: 30px;
+				font-weight: 200;
+				color: #2F3C7E;
+				margin: 10px;
+				border-bottom: 2px solid #2F3C7E;
+			}
+			.hideBC{
+				display: none;
+			}
+			.block{
+				width: 140px;
+				position: relative;
+				left: 50%;
+				transform: translate(-50%, 0);
+				margin-top: 20px
+			}
+			.block:hover{
+				opacity:0.5;
+				cursor: pointer;
+			}
+			.block p {
+				font-size: 20px;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				color: #2F3C7E;
+			}
+			.bblock{
+				position: absolute;
+				top: 0;
+				color: #FBEAEB;
+				opacity: 1;
+				left: 0;
+				font-size: 20px;
+				transform: translate(-50%, 53%);
+			}
+			.fblock{
+				position: absolute;
+				top: 0;
+				right: 0;
+				font-size: 20px;
+				transform: translate(50%, 53%);
+			}
+			
+			.brass{
+				background-color: skyblue;
+				color: skyblue;
+			}
+			.keyboard{
+				background-color: mediumpurple;
+				color: mediumpurple;
+			}
+			.percussion{
+				background-color: orange;
+				color: orange;
+			}
+			.strings{
+				background-color: forestgreen;
+				color: forestgreen;
+			}
+			.woodwind{
+				background-color: indianred;
+				color: indianred;
+			}
+			
+			#playarea{
+				position: absolute;
+				left: 30%;
+				top: 20%;
+				width: 70%;
+				height: 80vh;
+				background-color: #FBEAEB;
+				border-top: 3px solid #2F3C7E;
+				border-left: 3px solid #2F3C7E;
+				border-right: 3px solid #2F3C7E;
+				border-top-right-radius: 25px;
+				overflow: auto;
+			}
+			#timer{
+				position: absolute;
+				left: 30%;
+				bottom: 0%;
+				margin-left: 10px;
+				margin-bottom: 30px;
+				color: #2F3C7E;
+			}
+			#playarea .icon{
+				font-size: 30px;
+				margin: 10px;
+			}
+			#play{
+				position: fixed;
+				left: 30%;
+			}
+			#stop{
+				position: fixed;
+				left: 34%;
+			}
+			#delete{
+				position: fixed;
+				left: 38%;
+			}
+			#playarea .icon:hover{
+				opacity: 0.5;
+				cursor: pointer;
+			}
+			.largeMarker{
+				width: 1%;
+				height: 50%;
+				background-color: #FBEAEB;
+				position: relative;
+				margin-right: 0.7%;
+				top: 3px;
+			}
+			.medMarker{
+				width: 0.7%;
+				height: 43%;
+				background-color: #FBEAEB;
+				position: relative;
+				float: right;
+				top: 3px;
+				margin-right: 0.7%;
+			}
+			.smallMarker{
+				width: 0.5%;
+				height: 35%;
+				background-color: #FBEAEB;
+				position: relative;
+				float: right;
+				top: 3px;
+				margin-right: 0.7%;
+			}
+			#startBlock{
+				position: absolute;
+				left: 30px;
+				top: 77px;
+				width: 70px;
+				height: 70px;
+				background-color: goldenrod;
+				border-bottom-left-radius: 25px;
+				border-top-left-radius: 25px;
+				font-size: 20px;
+			}
+			.startIcon{
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				font-size: 30px;
+			}
+			.startfblock{
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(150%, -50%);
+				color: goldenrod;
+				font-size: 20px;
+			}
+			#scanLine{
+				position: absolute;
+				top: 0%;
+				width: 1%;
+				left: 0%;
+				height: 90%;
+				background-color: palevioletred;
+				opacity: 0.5;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="application">
+			<div id="selector">
+				<div id="titles">
+					<h1 class="selected">Instruments</h1>
+				</div>
+				<div id="instruments">
+					<div id="types">
+						<div class="group groupSelected" id="group1" onclick="addClass(1)">
+							<i class="fa fa-circle" style="color: skyblue;"></i>
+							<h1>Brass</h1>
+						</div>
+						<div class="group" id="group2" onclick="addClass(2)">
+							<i class="fa fa-circle" style="color: mediumpurple"></i>
+							<h1>Keyboard</h1>
+						</div>
+						<div class="group" id="group4" onclick="addClass(3)">
+							<i class="fa fa-circle" style="color: orange"></i>
+							<h1>Percussion</h1>
+						</div>
+						<div class="group" id="group5" onclick="addClass(4)">
+							<i class="fa fa-circle" style="color: forestgreen"></i>
+							<h1>Strings</h1>
+						</div>
+						<div class="group" id="group6" onclick="addClass(5)">
+							<i class="fa fa-circle" style="color: indianred"></i>
+							<h1>Woodwind</h1>
+						</div>
+					</div>
+					<div id="objects">
+						<div id="brass" class="blockContainer">
+							<h1>Brass</h1>
+							<div class="block brass" id="fhorn" onclick="cloneing(this.id)">
+								<p>French Horn</p>
+								<i class="fa fa-square bblock"></i>
+								<i class="fa fa-square fblock"></i>
+							</div>
+							<div class="block brass" id="trombone" onclick="cloneing(this.id)">
+								<p>Trombone</p>
+								<i class="fa fa-square bblock"></i>
+								<i class="fa fa-square fblock"></i>
+							</div>
+							<div class="block brass" id="trumpet" onclick="cloneing(this.id)">
+								<p>Trumpet</p>
+								<i class="fa fa-square bblock"></i>
+								<i class="fa fa-square fblock"></i>
+							</div>
+							<div class="block brass" id="tuba" onclick="cloneing(this.id)">
+								<p>Tuba</p>
+								<i class="fa fa-square bblock"></i>
+								<i class="fa fa-square fblock"></i>
+							</div>
+						</div>
+						<div id="keyboards" class="blockContainer hideBC">
+							<h1>Keyboard</h1>
+							<div class="block keyboard" id="organ" onclick="cloneing(this.id)">
+								<p>Organ</p>
+								<i class="fa fa-square bblock"></i>
+								<i class="fa fa-square fblock"></i>
+							</div>
+							<div class="block keyboard" id="piano" onclick="cloneing(this.id)">
+								<p>Piano</p>
+								<i class="fa fa-square bblock"></i>
+								<i class="fa fa-square fblock"></i>
+							</div>
+						</div>
+						<div id="percussion" class="blockContainer hideBC">
+							<h1>Percussion</h1>
+							<div class="block percussion" id="bells" onclick="cloneing(this.id)">
+								<p>Bells</p>
+								<i class="fa fa-square bblock"></i>
+								<i class="fa fa-square fblock"></i>
+							</div>
+							<div class="block percussion" id="gong" onclick="cloneing(this.id)">
+								<p>Gong</p>
+								<i class="fa fa-square bblock"></i>
+								<i class="fa fa-square fblock"></i>
+							</div>
+							<div class="block percussion" id="drums" onclick="cloneing(this.id)">
+								<p>Drums</p>
+								<i class="fa fa-square bblock"></i>
+								<i class="fa fa-square fblock"></i>
+							</div>
+						</div>
+						<div id="strings" class="blockContainer hideBC">
+							<h1>Strings</h1>
+							<div class="block strings" id="cello" onclick="cloneing(this.id)">
+								<p>Cello</p>
+								<i class="fa fa-square bblock"></i>
+								<i class="fa fa-square fblock"></i>
+							</div>
+							<div class="block strings" id="guitar" onclick="cloneing(this.id)">
+								<p>Guitar</p>
+								<i class="fa fa-square bblock"></i>
+								<i class="fa fa-square fblock"></i>
+							</div>
+							<div class="block strings" id="guitar2" onclick="cloneing(this.id)">
+								<p>Guitar2</p>
+								<i class="fa fa-square bblock"></i>
+								<i class="fa fa-square fblock"></i>
+							</div>
+							<div class="block strings" id="harp" onclick="cloneing(this.id)">
+								<p>Harp</p>
+								<i class="fa fa-square bblock"></i>
+								<i class="fa fa-square fblock"></i>
+							</div>
+							<div class="block strings" id="violin" onclick="cloneing(this.id)">
+								<p>Violin</p>
+								<i class="fa fa-square bblock"></i>
+								<i class="fa fa-square fblock"></i>
+							</div>
+						</div>
+						<div id="woodwind" class="blockContainer hideBC">
+							<h1>Woodwind</h1>
+							<div class="block woodwind" id="flute" onclick="cloneing(this.id)">
+								<p>Flute</p>
+								<i class="fa fa-square bblock"></i>
+								<i class="fa fa-square fblock"></i>
+							</div>
+						</div>
+						<script>
+							var group1 = document.getElementById("group1");
+							var group2 = document.getElementById("group2");
+							var group3 = document.getElementById("group3");
+							var group4 = document.getElementById("group4");
+							var group5 = document.getElementById("group5");
+							var group6 = document.getElementById("group6");
+							
+							var brass = document.getElementById("brass");
+							var keyboards = document.getElementById("keyboards");
+							var percussion = document.getElementById("percussion");
+							var strings = document.getElementById("strings");
+							var woodwind = document.getElementById("woodwind");
+							function addClass(num){
+								if(num == 1){
+									group1.classList.add("groupSelected");
+									group2.classList.remove("groupSelected");
+									group4.classList.remove("groupSelected");
+									group5.classList.remove("groupSelected");
+									group6.classList.remove("groupSelected");
+								}
+								if(num == 2){
+									group2.classList.add("groupSelected");
+									group1.classList.remove("groupSelected");
+									group4.classList.remove("groupSelected");
+									group5.classList.remove("groupSelected");
+									group6.classList.remove("groupSelected");
+								}
+								if(num == 3){
+									group4.classList.add("groupSelected");
+									group1.classList.remove("groupSelected");
+									group2.classList.remove("groupSelected");
+									group5.classList.remove("groupSelected");
+									group6.classList.remove("groupSelected");
+									
+								}
+								if(num == 4){
+									group5.classList.add("groupSelected");
+									group2.classList.remove("groupSelected");
+									group4.classList.remove("groupSelected");
+									group1.classList.remove("groupSelected");
+									group6.classList.remove("groupSelected");
+									
+								}
+								if(num == 5){
+									group6.classList.add("groupSelected");
+									group1.classList.remove("groupSelected");
+									group4.classList.remove("groupSelected");
+									group5.classList.remove("groupSelected");
+									group2.classList.remove("groupSelected");
+								}
+								
+								if(num == 1){
+									brass.style.display = "block";
+									keyboards.style.display = "none";
+									percussion.style.display = "none";
+									strings.style.display = "none";
+									woodwind.style.display = "none";
+								}
+								if(num == 2){
+									brass.style.display = "none";
+									keyboards.style.display = "block";
+									percussion.style.display = "none";
+									strings.style.display = "none";
+									woodwind.style.display = "none";
+								}
+								if(num == 3){
+									brass.style.display = "none";
+									keyboards.style.display = "none";
+									percussion.style.display = "block";
+									strings.style.display = "none";
+									woodwind.style.display = "none";
+								}
+								if(num == 4){
+									brass.style.display = "none";
+									keyboards.style.display = "none";
+									percussion.style.display = "none";
+									strings.style.display = "block";
+									woodwind.style.display = "none";
+								}
+								if(num == 5){
+									brass.style.display = "none";
+									keyboards.style.display = "none";
+									percussion.style.display = "none";
+									strings.style.display = "none";
+									woodwind.style.display = "block";
+								}
+							}
+						</script>
+					</div>
+				</div>
+				<div id="tuning">
+					<div id="tuneObjects"></div>
+				</div>
+				<div id="sounds">
+					<div id="soundObjects"></div>
+				</div>
+			</div>
+			<div id="playarea">
+				<i class="fa fa-play-circle icon" style="color: forestgreen;" id="play" onclick="play()"></i>
+				<i class="fa fa-stop-circle icon" style="color: indianred;" id="stop" onclick="pause()"></i>
+				<i class="fa fa-trash icon"  style="color: deepskyblue;" id="delete" onClick="window.location.reload();"></i>
+				<div id="startBlock">
+					<i class="fa fa-play startIcon" style="color: forestgreen;"></i>
+					<i class="fa fa-square startfblock"></i>
+				</div>
+				<script>
+					var soundList = [];
+					var audio;
+					var frenchhorn = new Audio('sounds/Brass/frenchhorn.mp3');
+					var trombone = new Audio('sounds/Brass/trombone.mp3');
+					var trumpet = new Audio('sounds/Brass/trumpet.mp3');
+					var tuba = new Audio('sounds/Brass/tuba.mp3');
+						
+					var organ = new Audio('sounds/Keyboard/organ.mp3');
+					var piano = new Audio('sounds/Keyboard/piano.mp3');
+						
+					var bell = new Audio('sounds/Percussion/bell.mp3');
+					var drums = new Audio('sounds/Percussion/drums.mp3');
+					var gong = new Audio('sounds/Percussion/gong.mp3');
+					
+					var cello = new Audio('sounds/Strings/cello.mp3');
+					var guitar = new Audio('sounds/Strings/guitar.mp3');
+					var guitar2 = new Audio('sounds/Strings/guitar2.mp3');
+					var harp = new Audio('sounds/Strings/harp.mp3');
+					var violin = new Audio('sounds/Strings/violin.mp3');
+					
+					var flute = new Audio('sounds/Woodwind/flute.mp3');
+					
+					var leftPos = 0;
+					var count = 0;
+					var o = 0;
+					function cloneing(id){
+						var elem = document.getElementById(id);
+						var clone = elem.cloneNode(true);
+						console.log(id);
+						clone.id = id+2;
+						elem.after(clone);
+						document.getElementById("playarea").appendChild(clone);
+						
+						count += 1;
+						console.log(count);
+						if(count == 1){
+							leftPos += 140 + 30;
+						}
+						if(count > 1){
+							leftPos += 140;	
+						}
+						clone.style.position = "absolute";
+						clone.style.top = "71px";
+						clone.style.left = leftPos + 'px';
+						clone.style.width = "140px";
+						clone.style.textAlign = "center";
+						clone.style.trasform = "translate('0, -50%')";
+						
+						soundList.push(id);
+					}
+					
+					var b = 0;
+					function play(){
+						if(soundList[b] == "fhorn"){
+								audio = frenchhorn;
+								audio.play();
+							}
+						if(soundList[b] == "trombone"){
+							audio = trombone;
+							audio.play();
+						}
+						if(soundList[b] == "trumpet"){
+							audio = trumpet;
+							audio.play();
+						}
+						if(soundList[b] == "tuba"){
+							audio = tuba;
+							audio.play();
+						}
+						if(soundList[b] == "organ"){
+							audio = organ;
+							audio.play();
+						}
+						if(soundList[b] == "piano"){
+							audio = piano;
+							audio.play();
+						}
+						if(soundList[b] == "bells"){
+							audio = bell;
+							audio.play();
+						}
+						if(soundList[b] == "drums"){
+							audio = drums;
+							audio.play();
+						}
+						if(soundList[b] == "gong"){
+							audio = gong;
+							audio.play();
+						}
+						if(soundList[b] == "cello"){
+							audio = cello;
+							audio.play();
+						}
+						if(soundList[b] == "guitar"){
+							audio = guitar;
+							audio.play();
+						}
+						if(soundList[b] == "guitar2"){
+							audio = guitar2;
+							audio.play();
+						}
+						if(soundList[b] == "harp"){
+							audio = harp;
+							audio.play();
+						}
+						if(soundList[b] == "violin"){
+							audio = violin;
+							audio.play();
+						}
+						if(soundList[b] == "flute"){
+							audio = flute;
+							audio.play();
+						}
+						audio.onended = function(){
+							if(b < soundList.length){
+								b++;
+								play();
+							}
+							if(b >= soundList.length){
+								b = 0;
+							}
+						}
+					}
+					
+					var sec = 0;
+					
+					function pause(){
+						audio.pause();
+					}
+					
+					
+				</script>
+			</div>
+		</div>
+		
+		<header>
+			<div id="logo">Music Maker</div>
+			<ul>
+				<li><a class="heada highlight" href="application.html">Application</a></li>
+				<li><a class="heada" href="controls.html">Controls</a></li>
+				<li><a class="heada" href="index.html#team">Team</a></li>
+				<li><a class="heada" href="index.html#about">About</a></li>
+				<li><a class="heada" href="index.html">Home</a></li>
+			</ul>
+		</header>
+	</body>
+</html>

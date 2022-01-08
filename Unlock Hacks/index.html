@@ -1,0 +1,477 @@
+<html>
+	<head>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="shortcut icon" href="img/logo.png"/>
+		<title>Music Maker</title>
+		<style>
+			*{
+				margin: 0;
+				font-family: 'Ubuntu', sans-serif;
+			}
+			
+			header{
+				width: 100%;
+				height: 100px;
+				background-color: #FBEAEB;
+				color: #2F3C7E;
+				position: fixed;
+				top: 0;
+				left: 0;
+			}
+			#logo{
+				float: left;
+				position: relative;
+				top: 50%;
+				transform: translate(0, -50%);
+				margin-left: 20px;
+				font-weight: bold;
+				font-size: 30px;
+				transition: 1s;
+			}
+			#logo:hover{
+				opacity: 0.3;
+				cursor: pointer;
+			}
+			ul{
+				float: right;
+				position: relative;
+				top: 50%;
+				transform: translate(0, -50%);
+				font-size: 20px;
+			}
+			li{
+				float: right;
+				margin: 20px;
+				list-style: none;
+				transition: 1s;
+			}
+			li:hover{
+				opacity: 0.3;
+				cursor: pointer;
+			}
+			.heada{
+				color: #2F3C7E;
+				text-decoration: none;
+			}
+			.highlight{
+				border-bottom: 3px solid #2F3C7E;
+			}
+			
+			#home{
+				position: relative;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100vh;
+				background-color: white;
+			}
+			.center{
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				text-align: center;
+			}
+			.container{
+				position: relative;
+				text-align: center;
+				background-color: #FBEAEB;
+				padding: 20px;
+				border-radius: 25px;
+				color: #2F3C7E;
+				width: 500px;
+			}
+			.button{
+				position: relative;
+				border: 3px solid #2F3C7E;
+				color: #2F3C7E;
+				padding: 15px;
+				border-radius: 25px;
+				font-weight: bold;
+				top: 50px;
+				transition: 1s;
+				text-decoration: none;
+			}
+			.button:hover{
+				cursor: pointer;
+				color: #FBEAEB;
+				border: 3px solid #2F3C7E;
+				background-color: #2F3C7E;
+			}
+			#arrow{
+				position: absolute;
+				left: 50%;
+				bottom: 5%;
+				font-size: 50px;
+				transform: translate(-50%, -50%);
+				color: #2F3C7E;
+				animation: move 1s infinite alternate ease-in-out;
+				padding-bottom: 0px;
+			}
+			@keyframes move{
+				0%{
+					padding-bottom: 0px;
+					font-size: 70px;
+				}
+				50%{
+					padding-bottom: 50px;
+					font-size: 50px;
+				}
+				100%{
+					padding-bottom: 0px;
+					font-size: 70px;
+				}
+			}
+			
+			#about{
+				position: relative;
+				width: 100%;
+				height: 80vh;
+				background: linear-gradient(45deg,#E56AB3,#EF87BE,#F9A3CB,#FCBCD7,#FFCEE6);
+			}
+			.title{
+				text-align: center;
+				background-color: #FBEAEB;
+				color: #2F3C7E;
+				width: 50%;
+				position: relative;
+				left: 50%;
+				top: 15%;
+				transform: translate(-50%, -50%);
+				padding: 20px;
+				border-radius: 25px;
+			}
+			.titleText{
+				font-size: 50px;
+			}
+			.titleSubText{
+				font-size: 15px;
+				opacity: 0.8;
+			}
+			#threeC{
+				width: 90%;
+				height: 70%;
+				position: absolute;
+				left: 50%;
+				top: 60%;
+				transform: translate(-50%, -50%);
+			}
+			.threeContainer{
+				width: 30%;
+				height: 33%;
+				text-align: center;
+				line-height: 1.5;
+			}
+			.threeContainer h1{
+				color: white;
+				font-size: 20px;
+				margin: 10px;
+				border-bottom: 2px solid white;
+				padding-bottom: 5px;
+				font-weight: 100;
+			}
+			.threeContainer p{
+				color: #2F3C7E;
+				opacity: 0.9;
+			}
+			.left{
+				float: left;
+			}
+			.right{
+				float: right;
+			}
+			.middle{
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -100%);
+			}
+			.icon{
+				font-size: 60px;
+				padding: 30px;
+				border: 5px solid #2F3C7E;
+				border-radius: 50%;
+				width: 70px;
+				height: 70px;
+				line-height: 1.2;
+				color: #2F3C7E;
+			}
+			.fadeout{
+				animation: fadeOut 2s;
+			}
+			@keyframes fadeOut {
+				0% { opacity: 0;}
+				50% { opacity: 0.5;}
+				100% { opacity: 1;}
+			}
+			#rightarrow{
+				position: absolute;
+				left: 50%;
+				bottom: 3%;
+				transform: translate(-50%, 0);
+				font-size: 50px;
+				color: #2F3C7E;
+				transition: 1s;
+			}
+			#rightarrow:hover{
+				cursor: pointer;
+				opacity: 0.5;
+			}
+			
+			#team{
+				position: relative;
+				width: 100%;
+				height: 80vh;
+				background-color: white;
+			}
+			#me{
+				width: 300px;
+				position: relative;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -55%);
+				border: 10px solid #2F3C7E;
+				border-radius: 25px;
+				transition: 1s;
+			}
+			#aboutText{
+				position: absolute;
+				left: 52%;
+				top: 55%;
+				transform: translate(0%, -50%);
+				text-align: center;
+				color: #2F3C7E;
+				opacity: 0;
+				transition: 1s;
+			}
+			#aboutText h1{
+				font-size: 50px;
+			}
+			#aboutText p{
+				margin-top: 20px;
+				margin-bottom: 20px;
+				opacity: 0.8;
+			}
+			
+			#footer{
+				position: relative;
+				width: 100%;
+				height: 40vh;
+				background: linear-gradient(45deg,#E56AB3,#EF87BE,#F9A3CB,#FCBCD7,#FFCEE6);
+				display: flex;
+  				justify-content: center;
+			}
+			#footer img{
+				border-radius: 25px;
+				border: 5px solid #2F3C7E;
+				margin: 20px;
+			}
+			.section{
+				margin: 20px;
+			}
+			.section h1{
+				margin-bottom: 20px;
+				border-bottom: 5px solid #2F3C7E;
+				color: #2F3C7E;
+			}
+			.section h2{
+				margin-bottom: 10px;
+				color: #2F3C7E;
+				opacity: 0.8;
+				font-weight: 100;
+			}
+			a{
+				text-decoration: none;
+			}
+			a h2:hover{
+				text-decoration-line: underline;
+			}
+		</style>	
+	</head>
+	<body>
+		<div id="home" onmouseover="hoverOver(this.id)">
+			<div class="center">
+				<div class="container">
+					<img src="img/logo.png">
+					<h2>The app to create all your dreams</h2>
+				</div>
+				<a class="button" href="application.html">Try out the application</a>
+			</div>
+			<a href="#about"><i class="fa fa-angle-down" id="arrow"></i></a>
+		</div>
+		<div id="about" onmouseover="hoverOver(this.id)">
+			<div class="title">
+				<h1 class="titleText">About Music Maker</h1>
+				<h2 class="titleSubText">An easy application for anyone inspired to create music!</h2>
+			</div>
+			<div id="threeC">
+				<div class="middle threeContainer" id="easy">
+					<i class="fa fa-thumbs-up icon"></i>
+					<h1>Easy to Use!</h1>
+					<p>Thanks to our hard work and incredible use of Javascript, and other resources, Music Maker is one of the easiest music softwares to date! All you have to do is click a few buttons and watch a short tutorial to completely master the application.</p>
+				</div>
+				<div class="right threeContainer" id="free">
+					<i class="fa fa-dollar icon"></i>
+					<h1>Completely Free!</h1>
+					<p>Music Maker is completely free, meaning that whoever wants to, can access the application at any time and create any music they want!</p>
+				</div>
+				<div class="left threeContainer" id="time">
+					<i class="fa fa-history icon"></i>
+					<h1>No time at all!</h1>
+					<p>Thanks to our simple tutorial and clicking mechanism, this allows even beginers to start making and editing music is no time at all!</p>
+				</div>
+				<script>
+					var easy = document.getElementById("easy");
+					var free = document.getElementById("free");
+					var time = document.getElementById("time");
+					var num = 0;
+					var op = true;
+					setInterval(rotate, 6000);
+					function rotate(){
+						num += 1;
+						console.log(num);
+						if(num == 4){
+							num = 1;
+						}
+						if(num < 1){
+							num = 2;
+						}
+						if(num == 1){
+							easy.classList.remove("fadeout");
+							free.classList.remove("fadeout");
+							time.classList.remove("fadeout");
+							void easy.offsetWidth;
+							void free.offsetWidth;
+							void time.offsetWidth;
+							easy.classList.add("fadeout");
+							free.classList.add("fadeout");
+							time.classList.add("fadeout");
+							easy.classList.remove("middle");
+							easy.classList.add("right");
+							free.classList.remove("right");
+							free.classList.add("left");
+							time.classList.remove("left");
+							time.classList.add("middle");
+						}
+						if(num == 2){
+							easy.classList.remove("fadeout");
+							free.classList.remove("fadeout");
+							time.classList.remove("fadeout");
+							void easy.offsetWidth;
+							void free.offsetWidth;
+							void time.offsetWidth;
+							easy.classList.add("fadeout");
+							free.classList.add("fadeout");
+							time.classList.add("fadeout");
+							easy.classList.remove("right");
+							easy.classList.add("left");
+							free.classList.remove("left");
+							free.classList.add("middle");
+							time.classList.remove("middle");
+							time.classList.add("right");
+						}
+						if(num == 3){
+							easy.classList.remove("fadeout");
+							free.classList.remove("fadeout");
+							time.classList.remove("fadeout");
+							void easy.offsetWidth;
+							void free.offsetWidth;
+							void time.offsetWidth;
+							easy.classList.add("fadeout");
+							free.classList.add("fadeout");
+							time.classList.add("fadeout");
+							easy.classList.remove("left");
+							easy.classList.add("middle");
+							free.classList.remove("middle");
+							free.classList.add("right");
+							time.classList.remove("right");
+							time.classList.add("left");
+						}
+					}
+					function add(){
+						rotate();
+					}
+				</script>
+			</div>
+			<i class="fa fa-refresh" id="rightarrow" onclick="add()"></i>
+		</div>
+		<div id="team" onmouseover="move(); hoverOver(this.id);" onmouseout="origin()">
+			<div class="title">
+				<h1 class="titleText">Team Members</h1>
+			</div>
+			<img src="img/me.JPG" id="me">
+			<div id="aboutText">
+				<h1>Vincent Aquino</h1>
+				<h2>Creator & Main Developer</h2>
+				<br>
+				<p>8th Grader</p>
+				<p>vaquino2007@gmail.com</p>
+				<p>(925)-487-9182</p>
+				<p>San Ramon, CA</p>
+			</div>
+			<script>
+				var pic = document.getElementById("me");
+				var text = document.getElementById("aboutText");
+				function move(){
+					pic.style.left = "25%";
+					text.style.opacity = "1";
+				}
+				function origin(){
+					pic.style.left = "50%";
+					text.style.opacity = "0";
+				}
+			</script>
+		</div>
+		<footer id="footer">
+			<img src="img/logo.png">
+			<div class="section">
+				<h1>Contact Us</h1>
+				<h2>vaquino2007@gmail.com</h2>
+				<h2>(925)-487-9282</h2>
+			</div>
+			<div class="section">
+				<h1>Social Medias</h1>
+				<a href="https://twitter.com/The__Mudkip"><h2><i class="fa fa-twitter"></i> Twitter</h2></a>
+				<a href="https://www.instagram.com/cent_aaa/"><h2><i class="fa fa-instagram"></i> Instagram</h2></a>
+				<a href="https://github.com/Mudslap"><h2><i class="fa fa-github"></i> Github</h2></a>
+				<a href="https://www.youtube.com/channel/UCy0dpdz0M58RAP-pfTWkMdQ"><h2><i class="fa fa-youtube-play"></i> Youtube</h2></a>
+			</div>
+		</footer>
+		
+		<header>
+			<div id="logo">Music Maker</div>
+			<ul>
+				<li><a class="heada" href="application.html" id="appA">Application</a></li>
+				<li><a class="heada" href="controls.html" id="controlsA">Controls</a></li>
+				<li><a class="heada" href="#team" id="teamA">Team</a></li>
+				<li><a class="heada" href="#about" id="aboutA">About</a></li>
+				<li><a class="heada highlight" href="index.html" id="homeA">Home</a></li>
+				<script>
+					var homea = document.getElementById("homeA");
+					var teama = document.getElementById("teamA");
+					var abouta = document.getElementById("aboutA");
+					function hoverOver(id){
+						if(id == "home"){
+							homea.classList.add("highlight");
+							teama.classList.remove("highlight");
+							abouta.classList.remove("highlight");
+						}
+						if(id == "about"){
+							homea.classList.remove("highlight");
+							teama.classList.remove("highlight");
+							abouta.classList.add("highlight");
+						}
+						if(id == "team"){
+							homea.classList.remove("highlight");
+							teama.classList.add("highlight");
+							abouta.classList.remove("highlight");
+						}
+					}
+				</script>
+			</ul>
+		</header>
+	</body>
+</html>

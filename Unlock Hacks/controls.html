@@ -1,0 +1,131 @@
+<html>
+	<head>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="shortcut icon" href="img/logo.png"/>
+		<title>Music Maker</title>
+		<style>
+			*{
+				margin: 0;
+				font-family: 'Ubuntu', sans-serif;
+			}
+			
+			header{
+				width: 100%;
+				height: 100px;
+				background-color: #FBEAEB;
+				color: #2F3C7E;
+				position: fixed;
+				top: 0;
+				left: 0;
+			}
+			#logo{
+				float: left;
+				position: relative;
+				top: 50%;
+				transform: translate(0, -50%);
+				margin-left: 20px;
+				font-weight: bold;
+				font-size: 30px;
+				transition: 1s;
+			}
+			#logo:hover{
+				opacity: 0.3;
+				cursor: pointer;
+			}
+			ul{
+				float: right;
+				position: relative;
+				top: 50%;
+				transform: translate(0, -50%);
+				font-size: 20px;
+			}
+			li{
+				float: right;
+				margin: 20px;
+				list-style: none;
+				transition: 1s;
+			}
+			li:hover{
+				opacity: 0.3;
+				cursor: pointer;
+			}
+			.heada{
+				color: #2F3C7E;
+				text-decoration: none;
+			}
+			.highlight{
+				border-bottom: 3px solid #2F3C7E;
+			}
+			
+			#controls{
+				position: relative;
+				left: 0;
+				top: 10%;
+				width: 100%;
+				height: 200vh;
+				background-color: white;
+			}
+			.container{
+				position: relative;
+				text-align: center;
+				background-color: #FBEAEB;
+				padding: 20px;
+				border-radius: 25px;
+				color: #2F3C7E;
+				width: 500px;
+				left: 50%;
+				top: 30px;
+				transform: translate(-50%, 0);
+			}
+			.container h2{
+				opacity: 0.7;
+				font-size: 20px;
+			}
+			#controls h3{
+				position: relative;
+				margin: 20px;
+				line-height: 1.5;
+				text-align: center;
+				top: 30px;
+				color: #2F3C7E;
+			}
+			#controls img{
+				width: 75%;
+				position: relative;
+				left: 50%;
+				transform: translate(-50%, 0);
+				margin-top: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="controls">
+			<div class="container">
+				<h1>Controls</h1>
+				<h2>How to use Music Maker</h2>
+			</div>
+			<h3>The premace of Music Maker is that it is a quick, easy, music program for beginners. It uses a simple click-and-drop mechanism where just through a use of your mouse/touch it will automatically place the instrument/sound onto the Playarea! It has a variety of different instruments that allow you to add lots of different sounds, etc. This project is still in a prototype meaning so there are way less feature that I was expecting but it still is very easy and good application! Hope you Enjoy!</h3>
+			<br>
+			<h3>STEP 1: Organization</h3>
+			<h3>Music Maker has a very simple organization. On the far left in the image you can see the list of different insturments. Once clicking on that, you will get a completely different list of instruments that you can put onto the Playarea!</h3>
+			<img src="img/musicmakerstep1.png">
+			<h3>STEP 2: Buttons</h3>
+			<h3>In the Playarea, you can see 3 different buttons. Once you click on the instruments you want, you can click on the green play button to start the music! If you want to pause the program and edit it, you can click the red pause button to pause the music where it is. If you want to completely clear the Playarea, click the blue trash icon!</h3>
+			<img src="img/musicmakerstep2.png">
+		</div>
+		
+		<header>
+			<div id="logo">Music Maker</div>
+			<ul>
+				<li><a class="heada" href="application.html">Application</a></li>
+				<li><a class="heada highlight" href="controls.html">Controls</a></li>
+				<li><a class="heada" href="index.html#team">Team</a></li>
+				<li><a class="heada" href="index.html#about">About</a></li>
+				<li><a class="heada" href="index.html">Home</a></li>
+			</ul>
+		</header>
+	</body>
+</html>
